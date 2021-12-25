@@ -38,7 +38,7 @@ class APIHits {
   });
 
   factory APIHits.fromJson(Map<String, dynamic> json) =>
-      $_APIHitsFromJson(json);
+      _$APIHitsFromJson(json);
 
   Map<String, dynamic> toJson() => _$APIHitsToJson(this);
 }
@@ -65,7 +65,7 @@ class APIRecipe {
   });
 
   factory APIRecipe.fromJson(Map<String, dynamic> json) =>
-      $_APIRecipeFromJson(json);
+      _$APIRecipeFromJson(json);
 
   Map<String, dynamic> toJson() => _$APIRecipeToJson(this);
 }
@@ -83,7 +83,7 @@ class APIIngredients {
   });
 
   factory APIIngredients.fromJson(Map<String, dynamic> json) =>
-      $_APIIngredientsFromJson(json);
+      _$APIIngredientsFromJson(json);
 
   Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
 }
