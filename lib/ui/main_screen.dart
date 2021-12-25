@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'colors.dart';
 
@@ -19,6 +20,24 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   List<Widget> pageList = <Widget>[];
   // TODO: Add index key
+  static const String prefSelectedIndexKey = 'selected_index';
+
+  void saveCurrentIndex() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt(prefSelectedIndexKey, _selectedIndex);
+  }
+
+  void getCurrentIndex() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey(prefSelectedIndexKey)) {
+      setState(() {
+        final index = prefs.getInt(prefSelectedIndexKey);
+        if (index != null) {
+          _selectedIndex = index;
+        }
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -27,6 +46,7 @@ class _MainScreenState extends State<MainScreen> {
     pageList.add(const MyRecipesList());
     pageList.add(const ShoppingList());
     // TODO: Call getCurrentIndex
+    getCurrentIndex();
   }
 
   void _onItemTapped(int index) {
@@ -34,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
       _selectedIndex = index;
     });
     // TODO: Call saveCurrentIndex
+    saveCurrentIndex();
   }
 
   @override
