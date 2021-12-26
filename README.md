@@ -20,3 +20,8 @@ Recipe Finder App from Flutter Apprentice Book
 - Serializing Json Data into Model classes manually using **dart:convert** package
 - Automated Serialization using **json_serializable** and **json_annotation** packages
 - Using build runner dart tools to auto generate model classes
+
+### Chapter 11
+- Retrieving JSON data from the network using HTTP package
+- Creating a service to fetch data from the API
+- Convert data returned by the API into model classes
