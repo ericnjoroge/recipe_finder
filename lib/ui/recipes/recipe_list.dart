@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../network/recipe_model.dart';
 import '../recipe_card.dart';
 import 'recipe_details.dart';
 import '../widgets/custom_dropdown.dart';
 import '../colors.dart';
+import '../../network/recipe_model.dart';
+import '../../network/recipe_service.dart';
 
 class RecipeList extends StatefulWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -19,9 +20,11 @@ class RecipeList extends StatefulWidget {
 
 class _RecipeListState extends State<RecipeList> {
   static const String prefSearchKey = 'previousSearches';
+
   late TextEditingController searchTextController;
   final ScrollController _scrollController = ScrollController();
-  List currentSearchList = [];
+
+  List<APIHits> currentSearchList = [];
   int currentCount = 0;
   int currentStartPosition = 0;
   int currentEndPosition = 20;
@@ -56,6 +59,13 @@ class _RecipeListState extends State<RecipeList> {
         }
       }
     });
+  }
+
+  //TODO: add getRecipeData here
+  Future<APIRecipeQuery> getRecipeData(String query, int from, int to) async {
+    final recipeJson = await RecipeService().getRecipes(query, from, to);
+    final recipeMap = json.decode(recipeJson);
+    return APIRecipeQuery.fromJson(recipeMap);
   }
 
   //TODO: Add LoadRecipes
@@ -206,18 +216,35 @@ class _RecipeListState extends State<RecipeList> {
       child: _buildRecipeCard(context, _currentRecipes1!.hits, 0),
     );
   }
-}
+
+  //TODO: Add _buildRecipeList
+  Widget _buildRecipeList(BuildContext recipeListContext, List<APIHits> hits) {
+    final size = MediaQuery.of(context).size;
+    const itemHeight = 310;
+    final itemWidth = size.width / 2;
+
+    return Flexible(
+        child: GridView.builder(
+            controller: _scrollController,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: (itemWidth / itemHeight)),
+            itemCount: hits.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildRecipeCard(recipeListContext, hits, index);
+            }));
+  }
 
 // TODO: Add _buildRecipeCard
-Widget _buildRecipeCard(
-    BuildContext topLevelContext, List<APIHits> hits, int index) {
-  final recipe = hits[index].recipe;
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(topLevelContext, MaterialPageRoute(builder: (context) {
-        return const RecipeDetails();
-      }));
-    },
-    child: recipeStringCard(recipe.image, recipe.label),
-  );
+  Widget _buildRecipeCard(
+      BuildContext topLevelContext, List<APIHits> hits, int index) {
+    final recipe = hits[index].recipe;
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(topLevelContext, MaterialPageRoute(builder: (context) {
+          return const RecipeDetails();
+        }));
+      },
+      child: recipeCard(recipe),
+    );
+  }
 }
