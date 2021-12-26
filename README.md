@@ -25,3 +25,11 @@ Recipe Finder App from Flutter Apprentice Book
 - Retrieving JSON data from the network using HTTP package
 - Creating a service to fetch data from the API
 - Convert data returned by the API into model classes
+
+### Chapter 12
+- Using Chopper to generate boilerplate for networking code
+- Creating generic classes to handle either successful response or errors
+- Using interceptors to transform requests and responses
+- Encoding and decoding requests and responses
+- Using interceptors to add headers and perform authentication
+- Setup global logging
