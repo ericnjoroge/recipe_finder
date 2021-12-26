@@ -7,7 +7,7 @@ part 'recipe_service.chopper.dart';
 
 const String apiKey = '48bc65493e651396d3e02799a8c9bda6';
 const String apiId = '79e45cca';
-const String apiUrl = 'https://api.edamam.com/search';
+const String apiUrl = 'https://api.edamam.com';
 
 @ChopperApi()
 abstract class RecipeService extends ChopperService {
@@ -33,8 +33,8 @@ Request _addQuery(Request req) {
   final params = Map<String, dynamic>.from(req.parameters);
 
   //Add apiId and apiKey to request parameters
-  params['api_id'] = apiId;
-  params['api_key'] = apiKey;
+  params['app_id'] = apiId;
+  params['app_key'] = apiKey;
 
   //Return new copy of the request with the params
   return req.copyWith(parameters: params);
