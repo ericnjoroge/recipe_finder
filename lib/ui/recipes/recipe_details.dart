@@ -72,7 +72,6 @@ class RecipeDetails extends StatelessWidget {
                     )),
                 const SizedBox(
                   height: 16,
-                  
                 ),
                 Center(
                   child: ElevatedButton.icon(
@@ -83,6 +82,7 @@ class RecipeDetails extends StatelessWidget {
                     ),
                     onPressed: () {
                       // TODO 4
+                      repository.insertRecipe(recipe);
                       Navigator.pop(context);
                     },
                     icon: SvgPicture.asset(
