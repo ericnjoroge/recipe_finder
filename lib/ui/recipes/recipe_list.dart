@@ -2,6 +2,8 @@ import 'dart:math';
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:recipe_finder/mock_service/mock_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:chopper/chopper.dart';
 
@@ -199,7 +201,7 @@ class _RecipeListState extends State<RecipeList> {
     }
 
     return FutureBuilder<Response<Result<APIRecipeQuery>>>(
-      future: RecipeService.create().queryRecipes(
+      future: Provider.of<MockService>(context).queryRecipes(
           searchTextController.text.trim(),
           currentStartPosition,
           currentEndPosition),
