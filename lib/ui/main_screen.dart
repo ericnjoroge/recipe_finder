@@ -19,7 +19,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   List<Widget> pageList = <Widget>[];
-  // TODO: Add index key
   static const String prefSelectedIndexKey = 'selected_index';
 
   void saveCurrentIndex() async {
@@ -45,7 +44,6 @@ class _MainScreenState extends State<MainScreen> {
     pageList.add(const RecipeList());
     pageList.add(const MyRecipesList());
     pageList.add(const ShoppingList());
-    // TODO: Call getCurrentIndex
     getCurrentIndex();
   }
 
@@ -53,7 +51,6 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    // TODO: Call saveCurrentIndex
     saveCurrentIndex();
   }
 

@@ -195,7 +195,6 @@ class _RecipeListState extends State<RecipeList> {
     });
   }
 
-// TODO: Replace method
   Widget _buildRecipeLoader(BuildContext context) {
     if (searchTextController.text.length < 3) {
       return Container();
@@ -256,7 +255,6 @@ class _RecipeListState extends State<RecipeList> {
           }
           return _buildRecipeList(context, currentSearchList);
         } else {
-          //TODO: Handle not done connection
           if (currentCount == 0) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -269,7 +267,6 @@ class _RecipeListState extends State<RecipeList> {
     );
   }
 
-  //TODO: Add _buildRecipeList
   Widget _buildRecipeList(BuildContext recipeListContext, List<APIHits> hits) {
     final size = MediaQuery.of(context).size;
     const itemHeight = 310;
@@ -286,7 +283,6 @@ class _RecipeListState extends State<RecipeList> {
             }));
   }
 
-// TODO: Add _buildRecipeCard
   Widget _buildRecipeCard(
       BuildContext topLevelContext, List<APIHits> hits, int index) {
     final recipe = hits[index].recipe;

@@ -30,7 +30,6 @@ class RecipeDetails extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: CachedNetworkImage(
-                        // TODO 1
                         imageUrl: recipe.image ?? '',
                         alignment: Alignment.topLeft,
                         fit: BoxFit.fill,
@@ -55,7 +54,6 @@ class RecipeDetails extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    // TODO 2
                     recipe.label ?? '',
                     style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold),
@@ -67,7 +65,6 @@ class RecipeDetails extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Chip(
-                      // TODO 3
                       label: Text(getCalories(recipe.calories)),
                     )),
                 const SizedBox(
@@ -81,7 +78,6 @@ class RecipeDetails extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16.0)),
                     ),
                     onPressed: () {
-                      // TODO 4
                       repository.insertRecipe(recipe);
                       Navigator.pop(context);
                     },

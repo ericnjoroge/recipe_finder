@@ -14,7 +14,6 @@ class MockService implements ServiceInterface {
 
   Random nextRecipe = Random();
 
-  //TODO: Add create and load methods
   void create() {
     loadRecipes();
   }
@@ -26,7 +25,6 @@ class MockService implements ServiceInterface {
     _currentRecipes2 = APIRecipeQuery.fromJson(jsonDecode(jsonString));
   }
 
-  //TODO: Add query method
   @override
   Future<Response<Result<APIRecipeQuery>>> queryRecipes(
       String query, int from, int to) {

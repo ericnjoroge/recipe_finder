@@ -14,7 +14,6 @@ class MyRecipesList extends StatefulWidget {
 }
 
 class _MyRecipesListState extends State<MyRecipesList> {
-  // TODO: Update recipes declaration
   List<Recipe> recipes = [];
 
   @override
@@ -26,7 +25,6 @@ class _MyRecipesListState extends State<MyRecipesList> {
   }
 
   Widget _buildRecipeList(BuildContext context) {
-    // TODO Add Consumer
     final repository = Provider.of<Repository>(context, listen: false);
     return StreamBuilder<List<Recipe>>(
         stream: repository.watchAllRecipes(),
@@ -36,7 +34,6 @@ class _MyRecipesListState extends State<MyRecipesList> {
             return ListView.builder(
                 itemCount: recipes.length,
                 itemBuilder: (BuildContext context, int index) {
-                  // TODO Add recipe definition
                   final recipe = recipes[index];
                   return SizedBox(
                     height: 100,
@@ -55,12 +52,10 @@ class _MyRecipesListState extends State<MyRecipesList> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
                               leading: CachedNetworkImage(
-                                  // TODO: Replace imageUrl hardcoding
                                   imageUrl: recipe.image ?? '',
                                   height: 120,
                                   width: 60,
                                   fit: BoxFit.cover),
-                              // TODO: Replace title hard coding
                               title: Text(recipe.label ?? ''),
                             ),
                           ),
@@ -73,7 +68,6 @@ class _MyRecipesListState extends State<MyRecipesList> {
                             foregroundColor: Colors.black,
                             iconWidget:
                                 const Icon(Icons.delete, color: Colors.red),
-                            // TODO: Update first onTap
                             onTap: () => deleteRecipe(repository, recipe)),
                       ],
                       secondaryActions: <Widget>[
@@ -83,7 +77,6 @@ class _MyRecipesListState extends State<MyRecipesList> {
                             foregroundColor: Colors.black,
                             iconWidget:
                                 const Icon(Icons.delete, color: Colors.red),
-                            // TODO: update second onTap
                             onTap: () => deleteRecipe(repository, recipe))
                       ],
                     ),
@@ -93,11 +86,8 @@ class _MyRecipesListState extends State<MyRecipesList> {
             return Container();
           }
         });
-
-    // TODO: Add final brace and parenthesis
   }
 
-  //TODO: Add deleteRecipe() here
   void deleteRecipe(Repository repository, Recipe recipe) async {
     if (recipe.id != null) {
       repository.deleteRecipeIngredients(recipe.id!);

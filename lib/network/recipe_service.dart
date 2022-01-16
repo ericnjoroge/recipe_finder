@@ -11,12 +11,13 @@ const String apiId = '79e45cca';
 const String apiUrl = 'https://api.edamam.com';
 
 @ChopperApi()
-abstract class RecipeService extends ChopperService implements ServiceInterface {
+abstract class RecipeService extends ChopperService
+    implements ServiceInterface {
   @override
   @Get(path: 'search')
   Future<Response<Result<APIRecipeQuery>>> queryRecipes(
       @Query('q') String query, @Query('from') int from, @Query('to') int to);
-  //TODO: Add create
+
   static RecipeService create() {
     final client = ChopperClient(
       baseUrl: apiUrl,
@@ -30,7 +31,6 @@ abstract class RecipeService extends ChopperService implements ServiceInterface 
   }
 }
 
-//TODO: Add _addQuery
 Request _addQuery(Request req) {
   final params = Map<String, dynamic>.from(req.parameters);
 

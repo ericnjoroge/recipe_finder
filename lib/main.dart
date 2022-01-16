@@ -15,7 +15,6 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-//TODO: add _setupLogging
 void _setupLogging() {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((rec) {

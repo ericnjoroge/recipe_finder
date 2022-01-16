@@ -32,7 +32,6 @@ class MemoryRepository extends Repository {
     return _ingredientStream!;
   }
 
-  //TODO: Add find methods
   @override
   Future<List<Recipe>> findAllRecipes() {
     return Future.value(_currentRecipes);
@@ -59,7 +58,7 @@ class MemoryRepository extends Repository {
     return Future.value(recipeIngredients);
   }
 
-  //TODO: Add insert methods
+  @override
   Future<int> insertRecipe(Recipe recipe) {
     _currentRecipes.add(recipe);
     _recipeSreamController.sink.add(_currentRecipes);
@@ -71,7 +70,6 @@ class MemoryRepository extends Repository {
 
   @override
   Future<List<int>> insertIngredients(List<Ingredient> ingredients) {
-    // TODO: implement insertIngredients
     if (ingredients.length != 0) {
       _currentIngredients.addAll(ingredients);
       _ingredientStreamController.sink.add(_currentIngredients);
@@ -79,7 +77,6 @@ class MemoryRepository extends Repository {
     return Future.value(<int>[]);
   }
 
-  //TODO: Add delete methods
   @override
   Future<void> deleteRecipe(Recipe recipe) {
     _currentRecipes.remove(recipe);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../network/recipe_model.dart';
 
-// TODO: Replace with new class
 Widget recipeCard(APIRecipe recipe) {
   return Card(
     elevation: 4.0,
@@ -16,7 +15,6 @@ Widget recipeCard(APIRecipe recipe) {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
             child: CachedNetworkImage(
-                // TODO: Replace with image from recipe
                 imageUrl: recipe.image,
                 height: 210,
                 fit: BoxFit.fill)),
@@ -26,7 +24,6 @@ Widget recipeCard(APIRecipe recipe) {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            // TODO: Replace with label from recipe
             recipe.label,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,

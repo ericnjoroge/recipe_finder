@@ -7,7 +7,6 @@ import '../../data/models/ingredient.dart';
 class ShoppingList extends StatefulWidget {
   const ShoppingList({Key? key}) : super(key: key);
 
-  // TODO 1
   @override
   State<ShoppingList> createState() => _ShoppingListState();
 }
@@ -17,7 +16,6 @@ class _ShoppingListState extends State<ShoppingList> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Add Consumer Widget
     final repository = Provider.of<Repository>(context);
     return StreamBuilder(
         stream: repository.watchAllIngredients(),
@@ -33,7 +31,6 @@ class _ShoppingListState extends State<ShoppingList> {
                   return CheckboxListTile(
                     value: checkBoxValues.containsKey(index) &&
                         checkBoxValues[index]!,
-                    // TODO: Update title to include name
                     title: Text(ingredients[index].name ?? ''),
                     onChanged: (newValue) {
                       if (newValue != null) {
@@ -48,7 +45,5 @@ class _ShoppingListState extends State<ShoppingList> {
             return Container();
           }
         });
-
-    // TODO: Add closing brace and parenthesis
   }
 }
