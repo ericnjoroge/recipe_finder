@@ -53,3 +53,9 @@ Recipe Finder App from Flutter Apprentice Book
 - Creating UI models for sharing data between screens
 - Using repository pattern
 - Using a mock service for testing
+
+### Chapter 14
+
+- Using streams to update different parts of the app
+- Using StreamBuilder to add streams to UI
+- Using abstract classes/ interfaces to abstract functionality

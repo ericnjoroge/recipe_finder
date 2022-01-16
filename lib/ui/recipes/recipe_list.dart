@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_finder/mock_service/mock_service.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:chopper/chopper.dart';
 
@@ -14,6 +14,7 @@ import '../colors.dart';
 import '../../network/recipe_model.dart';
 import '../../network/recipe_service.dart';
 import '../../network/model_response.dart';
+import '../../network/service_interface.dart';
 import '../../data/models/models.dart';
 
 class RecipeList extends StatefulWidget {
@@ -201,7 +202,7 @@ class _RecipeListState extends State<RecipeList> {
     }
 
     return FutureBuilder<Response<Result<APIRecipeQuery>>>(
-      future: Provider.of<MockService>(context).queryRecipes(
+      future: Provider.of<ServiceInterface>(context).queryRecipes(
           searchTextController.text.trim(),
           currentStartPosition,
           currentEndPosition),
@@ -300,7 +301,9 @@ class _RecipeListState extends State<RecipeList> {
               totalTime: recipe.totalTime,
               totalWeight: recipe.totalWeight);
           detailRecipe.ingredients = convertIngredients(recipe.ingredients);
-          return RecipeDetails(recipe: detailRecipe,);
+          return RecipeDetails(
+            recipe: detailRecipe,
+          );
         }));
       },
       child: recipeCard(recipe),
