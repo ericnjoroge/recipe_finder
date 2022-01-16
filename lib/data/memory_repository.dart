@@ -1,12 +1,36 @@
 import 'dart:core';
-import 'package:flutter/foundation.dart';
+import 'dart:async';
 
 import 'repository.dart';
 import 'models/models.dart';
 
-class MemoryRepository extends Repository with ChangeNotifier {
+class MemoryRepository extends Repository {
   final List<Recipe> _currentRecipes = <Recipe>[];
   final List<Ingredient> _currentIngredients = <Ingredient>[];
+  Stream<List<Recipe>>? _recipeStream;
+  Stream<List<Ingredient>>? _ingredientStream;
+
+  final StreamController _recipeSreamController =
+      StreamController<List<Recipe>>();
+  final StreamController _ingredientStreamController =
+      StreamController<List<Ingredient>>();
+
+  @override
+  Stream<List<Recipe>> watchAllRecipes() {
+    if (_recipeStream == null) {
+      _recipeStream = _recipeSreamController.stream as Stream<List<Recipe>>;
+    }
+    return _recipeStream!;
+  }
+
+  @override
+  Stream<List<Ingredient>> watchAllIngredients() {
+    if (_ingredientStream == null) {
+      _ingredientStream =
+          _ingredientStreamController.stream as Stream<List<Ingredient>>;
+    }
+    return _ingredientStream!;
+  }
 
   //TODO: Add find methods
   @override
